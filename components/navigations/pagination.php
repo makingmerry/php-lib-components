@@ -1,6 +1,6 @@
 <?php
   // Parameters:
-  // $routes: Array
+  $routes = $routes ?? [];
   // - $href: <URL>String
   // - $current: Boolean
 ?>

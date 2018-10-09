@@ -1,33 +1,34 @@
 <?php
   // Parameters:
-  // $core: Array
-  // - $title: String
-  // - $url: <URL>String
-  // - $desc: String
-  // - $img: <URL>String
+  $core = $core ?? [
+    'title' => '',
+    'url' => '',
+    'desc' => '',
+    'img_url' => '',
+  ];
 
-  // $og: Array
+  $og = $og ?? [];
   // - $site_name: String
-  // - $description: String
+  // - $desc: String
   // - $type: String
-  // - $img: <URL>String
+  // - $img_url: <URL>String
 
-  // $twitter: Array
+  $twitter = $twitter ?? [];
   // - $card: String
   // - $site: String
-  // - $description: String
+  // - $desc: String
   // - $creator: String
-  // - $img: <URL>String
+  // - $img_url: <URL>String
 
-  // $article: Array
-  // - $published_time: String
-  // - $modified_time: String
+  $article = $article ?? [];
+  // - $published_time: <datetime>String
+  // - $modified_time: <datetime>String
   // - $section: String
   // - $tag: String
 ?>
 
 <?php
-  // Try and ensure core meta data is present before
+  // Try and ensure core data is present before
   // excecuting snippet body.
   try {
     if (!is_array($core) && empty($core)) {
@@ -48,34 +49,30 @@
   <title><?php echo $core['title']; ?></title>
   <link rel="canonical" href="<?php echo $core['url']; ?>" />
   <meta name="description" content="<?php echo $core['desc']; ?>" />
-  <?php if (!empty($core['img'])): ?>
-    <meta name="image" content="<?php echo $core['img']; ?>" />
+  <?php if (!empty($core['img_url'])): ?>
+    <meta name="image" content="<?php echo $core['img_url']; ?>" />
   <?php endif; ?>
 
   <?php // Facebook OG tags: ?>
-  <?php if (
-    !is_array($og)
-    && !empty($og)): ?>
+  <?php if (is_array($og) && !empty($og)): ?>
     <meta property="og:title" content="<?php echo $core['title']; ?>" />
     <meta property="og:url" content="<?php echo $core['url']; ?>" />
     <?php if (!empty($og['site_name'])): ?>
       <meta property="og:site_name" content="<?php echo $og['site_name']; ?>" />
     <?php endif; ?>
-    <?php if (!empty($og['description'])): ?>
+    <?php if (!empty($og['desc'])): ?>
       <meta property="og:description" content="<?php echo $og['desc']; ?>" />
     <?php endif; ?>
     <?php if (!empty($og['type'])): ?>
       <meta property="og:type" content="<?php echo $og['type']; ?>" />
     <?php endif; ?>
-    <?php if (!empty($og['img'])): ?>
-      <meta property="og:image" content="<?php echo $og['img']; ?>" />
+    <?php if (!empty($og['img_url'])): ?>
+      <meta property="og:image" content="<?php echo $og['img_url']; ?>" />
     <?php endif; ?>
   <?php endif; ?>
 
   <?php // Twitter tags: ?>
-  <?php if (
-    !is_array($twitter)
-    && !empty($twitter)): ?>
+  <?php if (is_array($twitter) && !empty($twitter)): ?>
     <meta property="twitter:title" content="<?php echo $core['title']; ?>" />
     <?php if (!empty($twitter['card'])): ?>
       <meta property="twitter:card" content="<?php echo $twitter['card']; ?>" />
@@ -89,15 +86,13 @@
     <?php if (!empty($twitter['creator'])): ?>
       <meta property="twitter:creator" content="<?php echo $twitter['creator']; ?>" />
     <?php endif; ?>
-    <?php if (!empty($twitter['img'])): ?>
-      <meta property="twitter:image:src" content="<?php echo $twitter['img']; ?>" />
+    <?php if (!empty($twitter['img_url'])): ?>
+      <meta property="twitter:image:src" content="<?php echo $twitter['img_url']; ?>" />
     <?php endif; ?>
   <?php endif; ?>
 
   <?php // Article-specific content tags: ?>
-  <?php if (
-    !is_array($article)
-    && !empty($article)): ?>
+  <?php if (is_array($article) && !empty($article)): ?>
     <?php if (!empty($article['published_time'])): ?>
       <meta property="article:published_time" content="<?php echo $article['published_time']; ?>" />
     <?php endif; ?>

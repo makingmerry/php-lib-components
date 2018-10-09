@@ -1,7 +1,6 @@
 <?php
   // Parameters:
-  $label = $label ?? 'Click here';
-  $href = $href ?? '';
+  $html = $html ?? '';
   $class_list = $class_list ?? [];
 ?>
 
@@ -9,19 +8,17 @@
   // Try and ensure core data is present before
   // excecuting snippet body.
   try {
-    if (empty($href)) {
-      throw new Exception('Link href is missing.');
+    if (empty($html)) {
+      throw new Exception('Title HTML is missing.');
     }
 ?>
 
-  <a class="
+  <span class="
     <?php echo is_array($class_list) && !empty($class_list) ? join(' ', $class_list) : ''; ?>
-    d-i-block p-ver-3 p-hor-4
-    bg-c-silver" href="<?php echo $href; ?>">
-    <div class="line-h-solid">
-      <?php echo $label; ?>
-    </div>
-  </a>
+    d-block
+    measure-normal line-h-title">
+    <?php echo $html; ?>
+  </span>
 
 <?php
   // End try.
