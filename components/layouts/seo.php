@@ -1,24 +1,23 @@
 <?php
   // Parameters:
-  $core = $core ?? [
-    'title' => '',
-    'url' => '',
-    'desc' => '',
-    'img_url' => '',
-  ];
+  $core = $core ?? [];
+  // - $title: String
+  // - $url: String<URL>
+  // - $desc: String
+  // - $img_src: String<URL>
 
   $og = $og ?? [];
   // - $site_name: String
   // - $desc: String
   // - $type: String
-  // - $img_url: <URL>String
+  // - $img_src: <URL>String
 
   $twitter = $twitter ?? [];
   // - $card: String
   // - $site: String
   // - $desc: String
   // - $creator: String
-  // - $img_url: <URL>String
+  // - $img_src: <URL>String
 
   $article = $article ?? [];
   // - $published_time: <datetime>String
@@ -31,17 +30,32 @@
   // Try and ensure core data is present before
   // excecuting snippet body.
   try {
-    if (!is_array($core) && empty($core)) {
-      throw new Exception('Core page meta data is missing.');
+    if (empty($core)) {
+      throw new Exception('[SEO]: Core page meta data is missing.');
     }
+    if (!is_array($core)) {
+      throw new Exception('[SEO]: Core page meta data is not an array.');
+    }
+
     if (empty($core['title'])) {
-      throw new Exception('Page meta title is missing.');
+      throw new Exception('[SEO]: Page meta title is missing.');
     }
+    if (!is_string($core['title'])) {
+      throw new Exception('[SEO]: Page meta title is not a string.');
+    }
+
     if (empty($core['url'])) {
-      throw new Exception('Page canonical link is missing.');
+      throw new Exception('[SEO]: Page meta URL is missing.');
     }
+    if (!is_string($core['url'])) {
+      throw new Exception('[SEO]: Page meta URL is not a string.');
+    }
+
     if (empty($core['desc'])) {
-      throw new Exception('Page meta description is missing.');
+      throw new Exception('[SEO]: Page meta description is missing.');
+    }
+    if (!is_string($core['desc'])) {
+      throw new Exception('[SEO]: Page meta description is not a string.');
     }
 ?>
 
@@ -49,8 +63,8 @@
   <title><?php echo $core['title']; ?></title>
   <link rel="canonical" href="<?php echo $core['url']; ?>" />
   <meta name="description" content="<?php echo $core['desc']; ?>" />
-  <?php if (!empty($core['img_url'])): ?>
-    <meta name="image" content="<?php echo $core['img_url']; ?>" />
+  <?php if (!empty($core['img_src'])): ?>
+    <meta name="image" content="<?php echo $core['img_src']; ?>" />
   <?php endif; ?>
 
   <?php // Facebook OG tags: ?>
@@ -66,8 +80,8 @@
     <?php if (!empty($og['type'])): ?>
       <meta property="og:type" content="<?php echo $og['type']; ?>" />
     <?php endif; ?>
-    <?php if (!empty($og['img_url'])): ?>
-      <meta property="og:image" content="<?php echo $og['img_url']; ?>" />
+    <?php if (!empty($og['img_src'])): ?>
+      <meta property="og:image" content="<?php echo $og['img_src']; ?>" />
     <?php endif; ?>
   <?php endif; ?>
 
@@ -86,8 +100,8 @@
     <?php if (!empty($twitter['creator'])): ?>
       <meta property="twitter:creator" content="<?php echo $twitter['creator']; ?>" />
     <?php endif; ?>
-    <?php if (!empty($twitter['img_url'])): ?>
-      <meta property="twitter:image:src" content="<?php echo $twitter['img_url']; ?>" />
+    <?php if (!empty($twitter['img_src'])): ?>
+      <meta property="twitter:image:src" content="<?php echo $twitter['img_src']; ?>" />
     <?php endif; ?>
   <?php endif; ?>
 

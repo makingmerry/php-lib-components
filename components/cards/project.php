@@ -3,7 +3,6 @@
   $href = $href ?? '';
   $title = $title ?? 'News title';
   $thumb = $thumb ?? false;
-  $date_published = $date_published ?? false;
   $desc = $desc ?? false;
 ?>
 
@@ -27,8 +26,8 @@
 ?>
 
   <div
-    class="card-news"
-    itemscope itemtype="http://schema.org/NewsArticle">
+    class="card-project"
+    itemtype="http://schema.org/CreativeWork">
     <a
       href="<?php echo $href; ?>"
       itemprop="url">
@@ -36,7 +35,7 @@
         <?php // Thumbnail: ?>
         <?php if (!empty($thumb) && is_array($thumb)): ?>
           <div
-            class="card-news__thumb"
+            class="card-project__thumb"
             itemprop="image">
             <?php
               $data = $thumb;
@@ -47,25 +46,15 @@
 
         <?php // Title: ?>
         <h1
-          class="card-news__title"
+          class="card-project__title"
           itemprop="headline">
           <?php echo $title; ?>
         </h1>
 
-        <?php // Published date: ?>
-        <?php if (!empty($date_published) && is_string($date_published)): ?>
-          <time
-            class="card-news__date-published"
-            datetime="<?php echo $date_published; ?>"
-            itemprop="datePublished">
-            <?php echo $date_published; ?>
-          </time>
-        <?php endif; ?>
-
         <?php // Description: ?>
         <?php if (!empty($desc) && is_string($desc)): ?>
           <div
-            class="card-news__desc"
+            class="card-project__desc"
             itemprop="description">
             <?php echo $desc; ?>
           </div>

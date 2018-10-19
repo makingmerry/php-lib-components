@@ -1,16 +1,17 @@
 <?php
   // Parameters:
   $routes = $routes ?? [];
-  // - $href: <URL>String
-  // - $current: Boolean
 ?>
 
 <?php
   // Try and ensure core route data is present before
   // excecuting snippet body.
   try {
-    if (!is_array($routes) && empty($routes)) {
-      throw new Exception('Pagination routes missing.');
+    if (empty($routes)) {
+      throw new Exception('[Pagination]: routes are missing.');
+    }
+    if (!is_array($routes)) {
+      throw new Exception('[Pagination]: routes is not an array.');
     }
 
     $current_route = array_filter($routes, function ($route, $i) {
@@ -18,7 +19,7 @@
     }, ARRAY_FILTER_USE_BOTH);
 
     if (empty($current_route)) {
-      throw new Exception('Current route missing.');
+      throw new Exception('[Pagination]: Current route missing.');
     }
 
     $routes_count = count($routes);

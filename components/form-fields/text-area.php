@@ -16,10 +16,10 @@
   // excecuting snippet body.
   try {
     if (empty($name)) {
-      throw new Exception('Text-area input name is missing.');
+      throw new Exception('[Text-area]: input name is missing.');
     }
     if (!is_string($name)) {
-      throw new Exception('Text-area input name is not a string.');
+      throw new Exception('[Text-area]: input name is not a string.');
     }
 ?>
 

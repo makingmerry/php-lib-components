@@ -17,17 +17,17 @@
   // excecuting snippet body.
   try {
     if (empty($name)) {
-      throw new Exception('Text input name is missing.');
+      throw new Exception('[Text]: input name is missing.');
     }
     if (!is_string($name)) {
-      throw new Exception('Text input name is not a string.');
+      throw new Exception('[Text]: input name is not a string.');
     }
 
     if (empty($type)) {
-      throw new Exception('Text input type is missing.');
+      throw new Exception('[Text]: input type is missing.');
     }
     if (!is_string($type)) {
-      throw new Exception('Text input type is not a string.');
+      throw new Exception('[Text]: input type is not a string.');
     }
 ?>
 

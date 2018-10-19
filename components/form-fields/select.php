@@ -15,10 +15,10 @@
   // excecuting snippet body.
   try {
     if (empty($name)) {
-      throw new Exception('Select input name is missing.');
+      throw new Exception('[Select]: input name is missing.');
     }
     if (!is_string($name)) {
-      throw new Exception('Select input name is not a string.');
+      throw new Exception('[Select]: input name is not a string.');
     }
 ?>
 
