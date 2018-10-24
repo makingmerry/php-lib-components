@@ -1,6 +1,6 @@
 <?php
   // Parameters:
-  $routes = $routes ?? [];
+  $routes = $routes ?? false;
 ?>
 
 <?php

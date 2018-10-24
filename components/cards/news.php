@@ -32,12 +32,12 @@
     <a
       href="<?php echo $href; ?>"
       itemprop="url">
-      <div>
+      <div itemprop="articleBody">
         <?php // Thumbnail: ?>
         <?php if (!empty($thumb) && is_array($thumb)): ?>
           <div
             class="card-news__thumb"
-            itemprop="image">
+            itemscope itemtype="http://schema.org/ImageObject">
             <?php
               $data = $thumb;
               snippet('media/image', $data);

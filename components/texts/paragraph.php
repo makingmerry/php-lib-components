@@ -14,7 +14,8 @@
 ?>
 
   <div class="
-    <?php echo is_array($class_list) && !empty($class_list) ? join(' ', $class_list) : ''; ?>">
+    <?php echo is_array($class_list) && !empty($class_list) ? join(' ', $class_list) : ''; ?>
+    text-paragraph">
     <?php echo $html; ?>
   </div>
 

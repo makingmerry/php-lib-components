@@ -15,6 +15,7 @@
 
   <span class="
     <?php echo is_array($class_list) && !empty($class_list) ? join(' ', $class_list) : ''; ?>
+    text-title
     d-block
     measure-normal line-h-title">
     <?php echo $html; ?>

@@ -1,7 +1,7 @@
 <?php
   // Parameters:
   $href = $href ?? '';
-  $title = $title ?? 'News title';
+  $title = $title ?? 'Project title';
   $thumb = $thumb ?? false;
   $desc = $desc ?? false;
 ?>
@@ -11,23 +11,23 @@
   // excecuting snippet body.
   try {
     if (empty($href)) {
-      throw new Exception('[News card]: href is missing.');
+      throw new Exception('[Project card]: href is missing.');
     }
     if (!is_string($href)) {
-      throw new Exception('[News card]: href is not a string.');
+      throw new Exception('[Project card]: href is not a string.');
     }
 
     if (empty($title)) {
-      throw new Exception('[News card]: title is missing.');
+      throw new Exception('[Project card]: title is missing.');
     }
     if (!is_string($title)) {
-      throw new Exception('[News card]: title is not a string.');
+      throw new Exception('[Project card]: title is not a string.');
     }
 ?>
 
   <div
     class="card-project"
-    itemtype="http://schema.org/CreativeWork">
+    itemscope itemtype="http://schema.org/CreativeWork">
     <a
       href="<?php echo $href; ?>"
       itemprop="url">
@@ -36,7 +36,7 @@
         <?php if (!empty($thumb) && is_array($thumb)): ?>
           <div
             class="card-project__thumb"
-            itemprop="image">
+            itemscope itemtype="http://schema.org/ImageObject">
             <?php
               $data = $thumb;
               snippet('media/image', $data);
@@ -47,7 +47,7 @@
         <?php // Title: ?>
         <h1
           class="card-project__title"
-          itemprop="headline">
+          itemprop="name">
           <?php echo $title; ?>
         </h1>
 

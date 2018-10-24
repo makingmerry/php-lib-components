@@ -8,10 +8,10 @@
   // excecuting snippet body.
   try {
     if (empty($list)) {
-      throw new Exception('[News collection]: list is missing.');
+      throw new Exception('[Events collection]: list is missing.');
     }
     if (!is_string($list)) {
-      throw new Exception('[News collection]: list is not an array.');
+      throw new Exception('[Events collection]: list is not an array.');
     }
 ?>
 
@@ -23,7 +23,7 @@
       <article
         class="<?php echo !$first_item ? 'm-top-4': '';?>"
         itemprop="itemListElement">
-        <?php snippet('cards/news', $item); ?>
+        <?php snippet('cards/events', $item); ?>
       </article>
     <?php endforeach; ?>
   </div>

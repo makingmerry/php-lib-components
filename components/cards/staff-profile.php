@@ -25,7 +25,7 @@
     <?php if (!empty($thumb) && is_array($thumb)): ?>
       <div
         class="card-staff-profile__thumb"
-        itemprop="image">
+        itemscope itemtype="http://schema.org/ImageObject">
         <?php
           $data = $thumb;
           snippet('media/image', $data);

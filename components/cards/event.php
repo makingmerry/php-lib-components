@@ -1,10 +1,19 @@
 <?php
   // Parameters:
   $href = $href ?? '';
+  $buy_href = $buy_href ?? $href;
   $title = $title ?? 'Event title';
   $date_start = $date_start ?? '';
   $time_start = $time_start ?? '';
   $price = $price ?? false;
+  $currency = $currency ?? 'SGD';
+  $available = $available ?? false;
+  // $address = $address ?? [
+  //   'street' => '',
+  //   'locality' => '',
+  //   'region' => '',
+  //   'postal_code' => '',
+  // ]; ?
 ?>
 
 <?php
@@ -46,7 +55,19 @@
     <a
       href="<?php echo $href; ?>"
       itemprop="url">
-      <div>
+      <div itemprop="articleBody">
+        <?php // Thumbnail: ?>
+        <?php if (!empty($thumb) && is_array($thumb)): ?>
+          <div
+            class="card-event__thumb"
+            itemscope itemtype="http://schema.org/ImageObject">
+            <?php
+              $data = $thumb;
+              snippet('media/image', $data);
+            ?>
+          </div>
+        <?php endif; ?>
+
         <?php // Title: ?>
         <h1
           class="card-event__title"
@@ -78,15 +99,64 @@
 
         <?php // Price: ?>
         <?php if (!empty($price) && is_string($price)): ?>
-          <div
-            class="card-event__price"
-            itemprop="price"
-            content="<?php echo $price; ?>">
-            $<?php echo $price; ?>
+          <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+            <div>
+              <?php // Currency: ?>
+              <?php if (!empty($currency) && is_string($currency)): ?>
+                <span itemprop="priceCurrency" content="<?php echo $currency; ?>">
+                  $
+                </span>
+              <?php else: ?>
+                <span>
+                  $
+                </span>
+              <?php endif; ?>
+
+              <?php // Value: ?>
+              <span
+                class="card-event__price"
+                itemprop="price"
+                content="<?php echo $price; ?>">
+                <?php echo $price; ?>
+              </span>
+            </div>
+
+            <?php // Availability: ?>
+            <div>
+              <?php if (is_bool($available)): ?>
+                <?php if ($available): ?>
+                  <link itemprop="availability" href="http://schema.org/InStock" />
+                  In stock
+                <?php else: ?>
+                  <link itemprop="availability" href="http://schema.org/OutOfStock" />
+                  Out of stock
+                <?php endif; ?>
+              <?php endif; ?>
+            </div>
           </div>
         <?php endif; ?>
       </div>
     </a>
+
+    <?php // Buy/view options: ?>
+    <div class="d-flex align-ct-center justify-ct-space-btw">
+      <?php // View 'marker': ?>
+      <div>
+        View
+      </div>
+
+      <?php // Buy: ?>
+      <?php if (!empty($buy_href) && is_string($buy_href)): ?>
+      <div>
+        <?php
+          $data = [
+            'href' => $buy_href,
+            'label' => 'Buy',
+          ];
+          snippet('links/button-primary', $data);
+        ?>
+      </div>
+    </div>
   </div>
 
 <?php

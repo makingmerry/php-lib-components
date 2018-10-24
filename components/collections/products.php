@@ -8,22 +8,22 @@
   // excecuting snippet body.
   try {
     if (empty($list)) {
-      throw new Exception('[News collection]: list is missing.');
+      throw new Exception('[Products collection]: list is missing.');
     }
     if (!is_string($list)) {
-      throw new Exception('[News collection]: list is not an array.');
+      throw new Exception('[Products collection]: list is not an array.');
     }
 ?>
 
   <div itemscope itemtype="http://schema.org/ItemList">
-    <link itemprop="itemListOrder" href="http://schema.org/ItemListOrderDescending" />
+    <link itemprop="itemListOrder" href="http://schema.org/ItemListOrderUnordered" />
     <?php $count = count($list); ?>
     <?php foreach($list as $i => $item): ?>
       <?php $first_item = $i === 0; ?>
       <article
         class="<?php echo !$first_item ? 'm-top-4': '';?>"
         itemprop="itemListElement">
-        <?php snippet('cards/news', $item); ?>
+        <?php snippet('cards/product', $item); ?>
       </article>
     <?php endforeach; ?>
   </div>

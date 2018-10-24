@@ -1,7 +1,7 @@
 <?php
   // Parameters:
-  $label = $label ?? 'Click here';
   $href = $href ?? '';
+  $label = $label ?? 'Click here';
   $class_list = $class_list ?? [];
 ?>
 
@@ -14,10 +14,12 @@
     }
 ?>
 
-  <a class="
-    <?php echo is_array($class_list) && !empty($class_list) ? join(' ', $class_list) : ''; ?>
-    d-i-block p-ver-3 p-hor-4
-    bg-c-silver" href="<?php echo $href; ?>">
+  <a
+    class="
+      <?php echo is_array($class_list) && !empty($class_list) ? join(' ', $class_list) : ''; ?>
+      d-i-block p-ver-3 p-hor-4
+      bg-c-silver" href="<?php echo $href; ?>"
+    itemprop="url">
     <div class="line-h-solid">
       <?php echo $label; ?>
     </div>

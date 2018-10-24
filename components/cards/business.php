@@ -30,7 +30,9 @@
     }
 ?>
 
-  <div class="card-business">
+  <div
+    class="card-business"
+    itemscope itemtype="http://schema.org/PostalAddress">
     <?php // Name: ?>
     <h1
       class="card-business__name"
@@ -39,7 +41,9 @@
     </h1>
 
     <?php // Address: ?>
-    <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+    <div
+      class="card-business__address"
+      itemprop="address">
       <?php // Line 1: street ?>
       <?php if (!empty($address['street']) && $is_string($address['street'])): ?>
         <div itemprop="streetAddress">

@@ -28,7 +28,8 @@
           <?php echo (is_string($srcset['0']['1x']) && !empty($srcset['0']['1x'])) ? $srcset['0']['1x'].' 1x, ' : ''; ?>
           <?php echo (is_string($srcset['0']['2x']) && !empty($srcset['0']['2x'])) ? $srcset['0']['2x'].' 2x' : ''; ?>"
         <?php echo (is_string($src) && !empty($src)) ? 'src="'.$src.'"' : ''; ?>
-        <?php echo (is_string($alt) && !empty($alt)) ? 'alt="'.$alt.'"' : ''; ?>>
+        <?php echo (is_string($alt) && !empty($alt)) ? 'alt="'.$alt.'"' : ''; ?>
+        itemprop="image">
     <?php endif; ?>
   </picture>
 
@@ -37,6 +38,7 @@
   <?php if (is_string($src) && !empty($src)): ?>
     <img
       <?php echo (is_string($src) && !empty($src)) ? 'src="'.$src.'"' : ''; ?>
-      <?php echo (is_string($alt) && !empty($alt)) ? 'alt="'.$alt.'"' : ''; ?>>
+      <?php echo (is_string($alt) && !empty($alt)) ? 'alt="'.$alt.'"' : ''; ?>
+      itemprop="image">
   <?php endif; ?>
 <?php endif; ?>
